@@ -2,8 +2,12 @@
 @import 'core/variables.scss';
 @import 'core/media-queryes.scss';
 @import 'core/mixin.scss';
-@import 'core/form.scss';
 @import 'core/buttons.scss';
+
+@import 'blocks/header.scss';
+@import 'blocks/card.scss';
+@import 'blocks/content.scss';
+@import 'blocks/cart.scss';
 
 body {
   font-family: 'Inter', sans-serif;
@@ -11,113 +15,18 @@ body {
   line-height: 1.2;
   font-weight: 400;
   background-color: $background-color;
-  padding: 85px;
+
+  &.no-scroll {
+    overflow: hidden;
+  }
+}
+
+#root {
+  padding: res(20, 85);
 }
 
 .wrapper {
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.04);
   border-radius: 20px;
   background-color: $white;
-}
-
-.header {
-  margin-bottom: 45px;
-  padding: 44px 63px 44px 44px;
-  border-bottom: 1px solid $header-border-color;
-
-  &-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  &-content {
-    display: flex;
-  }
-
-  &-text {
-    margin-left: 16px;
-  }
-
-  &-title {
-    font-size: 20px;
-    font-weight: 700;
-  }
-
-  &-description {
-    color: $header-descr-color;
-  }
-
-  &-menu {
-    display: flex;
-  }
-
-  &-item {
-    display: flex;
-    align-items: center;
-    margin-right: 30px;
-
-    &:last-child {
-      margin-right: 0;
-    }
-
-    span {
-      margin-left: 10px;
-      font-weight: 600;
-      color: $header-price-color;
-    }
-  }
-}
-
-.content {
-  padding: 0 60px;
-
-  &-header {
-    margin-bottom: 30px;
-  }
-
-  &-title {
-    font-style: 32px;
-    font-weight: 700;
-  }
-
-  &-wrapper {
-    display: grid;
-    justify-content: center;
-    grid-template-columns: repeat(4, 210px);
-    grid-auto-columns: 210px;
-    gap: 40px;
-  }
-}
-
-.card {
-  padding: 20px 30px 34px 30px;
-  border: 1px solid $card-border-color;
-  border-radius: 40px;
-
-  &-title {
-    margin-top: 14px;
-  }
-
-  &-price {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 14px;
-
-    &-text {
-      display: flex;
-      flex-direction: column;
-    }
-
-    span {
-      font-size: 11px;
-      font-weight: 500;
-      color: $card-price-color;
-      text-transform: uppercase;
-    }
-
-    b {
-      font-weight: 700;
-    }
-  }
 }

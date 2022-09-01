@@ -1,0 +1,71 @@
+@import '../core/variables.scss';
+@import '../core/media-queryes.scss';
+@import '../core/mixin.scss';
+
+.card {
+    padding: 20px 30px 34px 30px;
+    border: 1px solid $border-color;
+    border-radius: 40px;
+    transition: box-shadow $fast, transform $fast;
+  
+    @include hover {
+      box-shadow: 0px 14px 30px rgba(0, 0, 0, 0.05);
+      transform: translateY(-10px);
+    }
+  
+    &-title {
+      margin-top: 14px;
+    }
+  
+    &-price {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 14px;
+  
+      &-text {
+        display: flex;
+        flex-direction: column;
+      }
+  
+      span {
+        margin-bottom: 2px;
+        font-size: 11px;
+        font-weight: 500;
+        color: $card-price-color;
+        text-transform: uppercase;
+      }
+  
+      b {
+        font-weight: 700;
+      }
+
+      svg {
+        rect {
+          transition: fill $fast;
+        }
+        @include hover {
+          rect {
+            fill: rgba(0, 255, 0, .2);
+          }
+        }
+      }
+    }
+  
+    .favorite {
+      display: inline;
+      cursor: pointer;
+
+      svg {
+
+        path {
+          transition: fill $fast;
+        }
+        
+        @include hover {
+          path {
+            fill: rgba(255, 133, 133, .3);
+          }
+        }
+      }
+    }
+  }

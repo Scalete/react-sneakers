@@ -1,0 +1,83 @@
+@import '../core/variables.scss';
+@import '../core/media-queryes.scss';
+@import '../core/mixin.scss';
+
+.header {
+    margin-bottom: 45px;
+    padding: 44px res(20, 63) 44px res(20, 44);
+    border-bottom: 1px solid $header-border-color;
+  
+    &-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  
+    &-content {
+      display: flex;
+
+      img {
+        transition: transform $fast;
+        cursor: pointer;
+
+        @include hover {
+          transform: translateY(-10px);
+        }
+      }
+    }
+  
+    &-text {
+      margin-left: 16px;
+    }
+  
+    &-title {
+      font-size: 20px;
+      font-weight: 700;
+    }
+  
+    &-description {
+      color: $header-descr-color;
+    }
+  
+    &-menu {
+      display: flex;
+    }
+  
+    &-item {
+      display: flex;
+      align-items: center;
+      margin-right: 30px;
+      transition: transform $fast;
+      cursor: pointer;
+  
+      &:last-child {
+        margin-right: 0;
+      }
+  
+      span {
+        margin-left: 10px;
+        font-weight: 600;
+        color: $header-price-color;
+      }
+
+      svg {
+        transition: transform $fast;
+      }
+
+      @include hover {
+        svg {
+          transform: translateY(-10px);
+        }
+      }
+    }
+
+    @include mobile() {
+        &-content {
+            margin-bottom: 40px;
+        }
+
+        &-wrapper {
+            flex-direction: column;
+        }
+    }
+}

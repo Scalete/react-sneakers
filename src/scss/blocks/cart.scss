@@ -1,0 +1,103 @@
+@import '../core/variables.scss';
+@import '../core/media-queryes.scss';
+@import '../core/mixin.scss';
+
+.overlay {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    background: rgba(0, 0, 0, .5);
+    transition: opacity $fast, visibility $fast;
+    overflow: hidden;
+
+    &.visible {
+        visibility: visible;
+        opacity: 1;
+
+        .cart {
+            transform: translateX(0);
+        }
+    }
+}
+
+.cart {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    width: 385px;
+    height: 100vh;
+    padding: 32px 30px 30px 30px;
+    background-color: $white;
+    box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
+    transition: transform $normal;
+    transform: translateX(100%);
+
+    &-title {
+        font-weight: 700;
+        font-size: 24px;
+    }
+
+    &-wrapper {
+        flex: 1;
+        margin-bottom: 30px;
+    }
+
+    &-total {
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+
+            &:first-child {
+                margin-bottom: 19px;
+            }
+        }
+
+        span + div {
+            width: 100%;
+            flex: 1;
+            border-bottom: 1px dashed $dash-color;
+        }
+
+        span {
+            font-size: 16px;
+            padding-right: 8px;
+        }
+
+        b {
+            font-size: 16px;
+            font-weight: 600;
+            padding-left: 8px;
+        }
+
+        button {
+            position: relative;
+            margin-top: 24px;
+
+            svg {
+                position: absolute;
+                top: 21px;
+                right: 30px;
+            }
+        }
+    }
+
+    @include mobile {
+        width: 100%;
+
+        &-title {
+            text-align: center;
+        }
+    }
+}
+
+.overlay.invisible {
+    visibility: hidden;
+    opacity: 0;
+}
