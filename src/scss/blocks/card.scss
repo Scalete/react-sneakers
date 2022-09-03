@@ -56,7 +56,8 @@
       cursor: pointer;
 
       svg {
-
+        display: inline;
+        
         path {
           transition: fill $fast;
         }

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const SneakersSevice = {
-    _apiUrl: '',
+    _apiUrl: 'https://630e2ef9109c16b9abf681c0.mockapi.io',
 
     getAllProducts: async function() {
         try {
@@ -9,7 +9,75 @@ export const SneakersSevice = {
 
             return products.data;
         } catch(err) {
-            alert('Ошибка получения продуктов с сервера');
+            alert('Ошибка получения всех продуктов');
+            console.error(err);
+        }
+    },
+
+    getAllCartProducts: async function() {
+        try {
+            const products = await axios.get(`${this._apiUrl}/cart`);
+
+            return products.data;
+        } catch(err) {
+            alert('Ошибка получения продуктов из корзины');
+            console.error(err);
+        }
+    },
+
+    getAllFavoritesProducts: async function() {
+        try {
+            const products = await axios.get(`${this._apiUrl}/favorites`);
+
+            return products.data;
+        } catch(err) {
+            alert('Ошибка получения продуктов из желаемых');
+            console.error(err);
+        }
+    },
+
+    addToCartProduct: async function(product) {
+        try {
+            const result = await axios.post(`${this._apiUrl}/cart`, product);
+
+            return result.data;
+        } catch(err) {
+            alert('Ошибка добавления продукта на сервер');
+            console.error(err);
+        }
+    },
+
+    addToFavoritesProduct: async function(product) {
+        try {
+            const result = await axios.post(`${this._apiUrl}/favorites`, product);
+
+            return result.data;
+        } catch(err) {
+            alert('Ошибка добавления продукта в желаемое');
+            console.error(err);
+        }
+    },
+
+    deleteCartProduct: async function(cartItemId, id, setCartProducts, cartProducts) {
+        try {
+            const result = await axios.delete(`${this._apiUrl}/cart/${cartItemId}`)
+            setCartProducts(cartProducts.filter(item => item[0].id !== id));
+
+            return result;
+        } catch(err) {
+            alert('Ошибка удаления продукта с сервера');
+            console.error(err);
+        }
+    },
+
+    deleteFavoriteProduct: async function(favoriteItemId, id, setFavoriteProducts, favoriteProducts) {
+        try {
+            const result = await axios.delete(`${this._apiUrl}/favorites/${favoriteItemId}`)
+            setFavoriteProducts(favoriteProducts.filter(item => item[0].id !== id));
+
+            return result;
+        } catch(err) {
+            alert('Ошибка удаления продукта из желаемого');
             console.error(err);
         }
     },
