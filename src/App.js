@@ -6,10 +6,12 @@ import { SneakersSevice } from './services/SneakersSevice';
 import { SneakersContext } from './services/SneakersContext';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Favorites } from './pages/Favorites';
+import { Orders } from './pages/Orders';
 
 function App() {
   const [products, setProducts] = React.useState([]);
   const [cartProducts, setCartProducts] = React.useState([]);
+  const [orders, setOrders] = React.useState([]);
   const [favoriteProducts, setFavoriteProducts] = React.useState([]);
   const [cartVisibility, setCartVisibility] = React.useState(false);
   const [isContentLoading, setIsContentLoading] = React.useState(true);
@@ -20,6 +22,7 @@ function App() {
       setFavoriteProducts(await SneakersSevice.getAllFavoritesProducts());
       setProducts(await SneakersSevice.getAllProducts());
       setIsContentLoading(false);
+      setOrders(await SneakersSevice.getAllOrders());
     }
 
     fetchData();
@@ -80,6 +83,13 @@ function App() {
     setFavoriteLoading(false);
   };
 
+  const onFormOrder = async (cartProducts, total, setOnFormingOrder, setCompleteOrder) => {
+    setOnFormingOrder(true);
+    await SneakersSevice.formOrder(cartProducts, setCartProducts, total, setOrders);
+    setOnFormingOrder(false);
+    setCompleteOrder(true);
+  }
+
   return (
     <SneakersContext.Provider
       value={{
@@ -93,7 +103,7 @@ function App() {
         onDeleteFavorite
       }}>
       <div className="wrapper">
-        <Cart visibility={cartVisibility} onHandleCart={onHandleCart} cartProducts={cartProducts} />
+        <Cart visibility={cartVisibility} onHandleCart={onHandleCart} cartProducts={cartProducts} onFormOrder={onFormOrder} />
         <BrowserRouter>
           <Header onHandleCart={onHandleCart} />
           <main>
@@ -102,6 +112,10 @@ function App() {
               <Route
                 path="/favorites"
                 element={<Favorites favoriteProducts={favoriteProducts} />}
+              />
+              <Route
+                path="/orders"
+                element={<Orders orders={orders}/>}
               />
             </Routes>
           </main>

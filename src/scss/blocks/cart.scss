@@ -61,7 +61,7 @@
         overflow-y: auto;
     }
 
-    &-empty {
+    &-empty, &-order {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -78,6 +78,14 @@
         span {
             font-size: 16px;
             opacity: 0.4;
+        }
+
+        button {
+            margin-top: 21px;
+            
+            svg {
+                margin-right: 20px;
+            }
         }
     }
 

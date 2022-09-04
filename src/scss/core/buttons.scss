@@ -30,4 +30,9 @@
 
         background-color: $btn-hover-color;
     }
+
+    &.loading {
+        background-color: $btn-hover-color;
+        opacity: 0.5;
+    }
 }

@@ -74,6 +74,13 @@
       border-radius: 40px;
     }
 
+    &.orders .content {
+
+      &-wrapper {
+        display: block;
+      }
+    }
+
     @include mobile() {
       &-header {
         flex-direction: column;

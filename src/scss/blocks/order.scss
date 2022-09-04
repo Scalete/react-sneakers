@@ -1,0 +1,103 @@
+@import '../core/variables.scss';
+@import '../core/media-queryes.scss';
+@import '../core/mixin.scss';
+
+.order {
+    padding: res(30, 60);
+    margin-bottom: 40px;
+    border: 3px solid $border-color;
+    border-radius: 40px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    h2 {
+        margin-bottom: 15px;
+        font-size: res(18, 24);
+        font-weight: 700;
+    }
+
+    table {
+        .order-item {
+            td {
+                text-align: center;
+                border: 2px solid $border-color;
+            }
+
+            img {
+                width: 133px;
+                height: 112px;
+            }
+        }
+
+        th {
+            font-weight: 700;
+            font-size: 14px;
+            padding-bottom: 10px;
+    
+            &:first-child {
+                text-align: start;
+            }
+        }
+
+        .item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    @include desktop {
+        table .item {
+            border-right: none !important;
+
+            span {
+                padding-left: 20px;
+            }
+        }
+    }
+
+    @include mobile {
+        h2 {
+            text-align: center;
+        }
+
+        table {
+            
+            thead {
+                display: none;
+            }
+
+            .order-item {
+                display: flex;
+                flex-direction: column;
+                
+                td {
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 20px;
+                    border-bottom: none;
+    
+                    &:last-child {
+                        border-bottom: 2px solid $border-color;
+                    }
+    
+                    &:before {
+                        content: attr(name);
+                        font-weight: 700;
+                        font-size: 14px;
+                    }
+                }
+            }
+
+            .item {
+                flex-direction: column;
+
+                span {
+                    margin-top: 10px;
+                }
+            }
+        }
+    }
+}
